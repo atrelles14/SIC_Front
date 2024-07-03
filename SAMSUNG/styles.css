@@ -1,0 +1,257 @@
+/* Sidebar */
+#wrapper {
+    display: flex;
+    align-items: stretch;
+}
+
+#sidebar-wrapper {
+    min-height: 100vh;
+    margin-left: -250px;
+    -webkit-transition: margin .25s ease-out;
+    -moz-transition: margin .25s ease-out;
+    -o-transition: margin .25s ease-out;
+    transition: margin .25s ease-out;
+    background-color: #343a40;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    margin-left: 0;
+}
+
+#page-content-wrapper {
+    flex: 1;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    #sidebar-wrapper {
+        margin-left: 0;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        margin-left: -250px;
+    }
+}
+
+/* Custom styles */
+body {
+    overflow-x: hidden;
+}
+
+.sidebar-heading {
+    padding: 0.875rem 1.25rem;
+    font-size: 1.2rem;
+}
+
+.list-group-item {
+    padding: 0.75rem 1.25rem;
+}
+
+.card {
+    margin-bottom: 1rem;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    background-color: #f4f6f9;
+}
+
+#sidebar {
+    width: 250px;
+    background-color: #031634;
+    color: white;
+    padding: 20px;
+    transition: width 0.3s; /* Transición de ancho */
+    overflow-x: hidden;
+}
+
+
+#sidebar.collapsed {
+    width: 60px;
+}
+
+#main-content {
+    flex-grow: 1;
+    padding: 20px;
+    transition: all 0.3s;
+}
+
+.menu-item {
+    padding: 10px;
+    cursor: pointer;
+    color: #c2c7d0;
+    display: flex;
+    align-items: center;
+}
+
+.menu-item:hover {
+    background-color: #494e53;
+}
+
+.menu-item i {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+}
+
+.menu-item span {
+    white-space: nowrap;
+}
+
+.active {
+    background-color: #031634;
+}
+
+#top-bar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.button {
+    padding: 10px;
+    background-color: #031634;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+
+
+.dashboard-section {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 1px rgba(0, 0, 0, .125), 0 1px 3px rgba(0, 0, 0, .2);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.user-panel {
+    border-bottom: 1px solid #4f5962;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.user-panel img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+#toggle-sidebar {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+
+#top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    /* Ajusta el padding según sea necesario */
+    border-radius: 0%;
+}
+
+.top-bar-left {
+    display: flex;
+    align-items: center;
+}
+
+.top-bar-right {
+    flex-grow: 1;
+    /* Hace que ocupe todo el espacio disponible */
+}
+
+.button {
+    padding: 10px 20px;
+    background-color: #031634;
+    /* Azul marino bonito */
+    color: white;
+
+    /* Borde del mismo color que el fondo */
+    border-radius: 10px;
+    /* Borde curvado */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Sombra */
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-left: 10px;
+    /* Espacio entre botones */
+}
+
+.button:hover {
+    background-color: #005f6b;
+    /* Cambio de color al pasar el mouse */
+}
+
+
+.buscar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2px;
+}
+
+
+
+#busqueda {
+    width: 300px;
+    padding: 10px;
+    border: 2px solid #ced4da;
+    border-radius: 2px 0 0 2px;
+    outline: none;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+#busqueda:focus {
+    border-color: #104389;
+}
+
+.dashboard-section {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 1px rgba(0, 0, 0, .125), 0 1px 3px rgba(0, 0, 0, .2);
+    padding: 20px;
+    margin-bottom: 20px;
+
+    align-items: center;
+}
+
+.report-content {
+    display: flex;
+    align-items: center;
+    /* Alineación horizontal de los elementos */
+}
+
+.report-button {
+    flex: 1;
+    /* Ocupa todo el espacio posible */
+    text-align: left;
+    /* Alinea el botón a la izquierda */
+}
+
+.report-image {
+    margin-left: auto;
+    /* Empuja la imagen a la derecha */
+}
+h3{
+    font-size: 20px;
+}
