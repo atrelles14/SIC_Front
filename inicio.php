@@ -1,11 +1,18 @@
 <?php
 session_start();
 require_once 'conexion.php';
+$correo = mysqli_real_escape_string($conn, $_SESSION['correo']);
 
+// Verifica si el correo está presente en la base de datos
+$sql = "SELECT usua_nombre FROM usuario WHERE usua_correo='$correo'";
+$result = mysqli_query($conn, $sql);
 
-$usua_mail = $_SESSION['correo'];
-$sql = "SELECT usua_nombre FROM usuario WHERE usua_correo = '$usua_mail'";
-$resultado = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+if ($result && mysqli_num_rows($result) > 0) {
+    $row = mysqli_fetch_assoc($result);
+    $usua_nombre = $row['usua_nombre'];
+} else {
+    $usua_nombre = "Usuario no encontrado";
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -204,26 +211,26 @@ $resultado = mysqli_fetch_assoc(mysqli_query($conn, $sql));
         .report-content {
             display: flex;
             align-items: center;
-            /* Alineación horizontal de los elementos */
+           
         }
 
         .report-button {
             flex: 1;
-            /* Ocupa todo el espacio posible */
+            
             text-align: left;
-            /* Alinea el botón a la izquierda */
+            
         }
 
         .report-image {
             margin-left: auto;
-            /* Empuja la imagen a la derecha */
+            
         }
         h3{
             font-size: 20px;
         }
         .menu-item a {
             text-decoration: none;
-            color: inherit; /* Mantiene el color del texto original */
+            color: inherit; 
         }
     </style>
 </head>
@@ -247,7 +254,7 @@ $resultado = mysqli_fetch_assoc(mysqli_query($conn, $sql));
     <div id="main-content">
         <div id="top-bar">
             <div class="top-bar-right">
-                <h1 id="search-bar">Bienvenido <?php echo $resultado;?></h1>
+                <h1 id="search-bar">Bienvenido <?php echo $usua_nombre;?></h1>
 
             </div>
             <div class="top-bar-left">
@@ -257,8 +264,9 @@ $resultado = mysqli_fetch_assoc(mysqli_query($conn, $sql));
 
 
                 </div>
-                <button class="button" onclick="subirCSV()"><i class="fas fa-upload"></i> Subir CSV</button>
-            </div>
+                <!-- <button class="button" onclick="subirCSV()"><i class="fas fa-upload"></i> Subir CSV</button> -->
+              </div>
+ 
         </div>
         <div class="dashboard-grid">
             <div class="dashboard-section">
@@ -328,6 +336,29 @@ $resultado = mysqli_fetch_assoc(mysqli_query($conn, $sql));
                 e.preventDefault();
                 $("#wrapper").toggleClass("toggled");
             });
+            function subirCSV() {
+                var form_data = new FormData();
+                var file_input = document.getElementById('csv_file').files[0];
+                form_data.append('csv_file', file_input);
+
+                $.ajax({
+                    url: 'http://localhost:8000/procesar-csv/',
+                    type: 'POST',
+                    data: form_data,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        console.log('Archivo CSV enviado correctamente.');
+                        console.log(response); // Aquí puedes manejar la respuesta JSON devuelta por Django
+                        alert('Archivo CSV enviado correctamente. Puedes revisar la consola para ver la respuesta.');
+                    },
+                    error: function (error) {
+                        console.error('Error al enviar el archivo CSV.');
+                        console.error(error);
+                        alert('Error al enviar el archivo CSV. Revisa la consola para más detalles.');
+                    }
+                });
+            }
         </script>
 </body>
 

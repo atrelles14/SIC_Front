@@ -1,11 +1,7 @@
 <?php
 // ARCHIVO DE INICIO DE SESIÓN Y REGISTRO
 require_once 'conexion.php';
-
-
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+session_start();
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
